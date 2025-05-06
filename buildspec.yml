@@ -2,16 +2,18 @@ version: 0.2
 
 phases:
   install:
-    runtime-versions:
-      nodejs: 18
     commands:
-      - echo Installing dependencies...
-      - npm ci --legacy-peer-deps
+      - echo Installing Bun...
+      - curl -fsSL https://bun.sh/install | bash
+      - export BUN_INSTALL="$HOME/.bun"
+      - export PATH="$BUN_INSTALL/bin:$PATH"
+      - echo Installing dependencies with Bun...
+      - bun install
 
   build:
     commands:
-      - echo Building the React app...
-      - npm run build
+      - echo Building the React app with Bun...
+      - bun run build
 
 artifacts:
   files:
